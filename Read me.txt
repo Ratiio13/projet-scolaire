@@ -1,0 +1,76 @@
+﻿#Quel est le meilleur champion de LoL
+#APARICIO Maxime, AMAZIT Alan, CAPIEU Valentin, POTTIER Anne, SEIGNOUX Vivien
+Etape 1: Analyse sur les Items:
+
+
+etape1_concat
+Ce programme créer un .csv qui est la concaténation de tous les .csv présent dans le dossier, sans doublons. Le .csv est ALL.csv
+etape1_groupement
+Ce programme va regrouper toutes les lignes de ALL.csv en fonction de ChampName
+etape1_analyse
+Ce programme a pour but d’analyser les données, c'est-à-dire d’effectuer un t-SNE et plusieurs clustering. il lit un dataset préalablement groupé ( via le programme etape1_groupement )
+etape1_Branch_and_Bound
+Ce programme effectue un branch and bound dans le but d’effectuer un clustering , il lit un dataset contenant les informations sur les items ou bien leurs statistiques associées.
+etape1_item_to_stats
+Ce programme lit un dataset contenant les informations sur les items et rend un .csv contenant les informations sur les statistiques des items
+Si au cours d’un futur patch, les statistiques donnés par un item changent, il faudra modifier ce programme.
+etape1_recherche
+Ce programme à pour objectif de créer un dataset par joueur contenant un matchID, ChampName ainsi que tous les items
+Une observation contient des variables binaire pour les items
+Il ne prend rien en entrée et rend un .csv par joueur étudié contenant les informations sur les items pris au cours de ses parties.
+Une connexion à internet est requise ainsi qu’une clé API valide.
+Si le code a fonctionné, alors soyez patients, une récupération de 100 matchs pour 1 joueur prend environ 3 minutes avant de se terminer, de télécharger le fichier csv associé et de passer au joueur suivant automatiquement.
+Les .csv seront créés au fur et à mesure, il est donc conseillé de mettre mettre un “nombre_de_joueur” très élevé et de l’arrêter quand bon vous semble
+
+
+
+
+Etape 2: Analyse sur les Stats:
+
+
+
+
+
+
+Plus: FCA sur les items: fca.py
+
+
+Le fichier lu a pour dénomination “ALL_Items_final.csv”, c’est celui obtenu avec l’etape1_concat. Adapter la nomination si nécessaire.
+
+
+
+
+Endgame: Classement des Champions:
+
+
+Extraction des données: endgame_extractor.py
+
+
+Afin de faire fonctionner le code, il est nécessaire d’entrer une API key valide (qui dit extraction dit API key), il n’y a pas d’autre chose à changer pour le faire fonctionner.
+Si le code a généré une erreur, se référer aux messages d’erreur rédigés par nos soins.
+Si le code a fonctionné, alors soyez patients, une récupération de 100 matchs pour 1 joueur prend environ 3 minutes avant de se terminer, de télécharger le fichier csv associé et de passer au joueur suivant automatiquement.
+Les .csv seront créés au fur et à mesure, il est donc conseillé de mettre mettre un “nombre_de_joueur” très élevé et de l’arrêter quand bon vous semble
+
+
+
+
+Concaténation des données: etape1_concat.py
+
+
+Faîtes attention à bien avoir vos fichiers csv téléchargés dans le dossier courant. Changez le nom du fichier en “Endgame”, pour que le programme sélectionne automatiquement tous les csv terminant en “Endgame”.
+Vérifiez que le nom du fichier final sortant soit le suivant: “ALL_Endgame_final.csv”
+
+
+Création des datasets pour chaque groupe: etape2_creation_cluster.py
+
+
+Les clusters définis en entrée dans la variable “champs” ont été définis et choisis par nous, vous pouvez éventuellement les remplacer par ceux que vous auriez obtenus après votre propre application des premières étapes.
+
+
+Vous pouvez éventuellement modifier les coefficient de la moyenne des 1 Star à 5 Star champions dans la variable “coefs” ligne 190.
+
+
+Visualisation des résultats pour chaque groupe: etape2_visualisation.py
+
+
+Ici, dans la lecture des datasets ligne 12, vous pourrez changer “grouped_c1.csv” par le fichier que vous voudrez lire et visualiser (de “grouped_c1.csv” à “grouped_c10.csv”).
